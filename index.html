@@ -1,278 +1,368 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EGC – Accès membres</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energie Golf Club</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+:root{
+  --green:#1f6b3b;
+  --green-dark:#123d26;
+  --green-soft:#e6f1ea;
+  --bg:#f4f6f5;
+  --text:#1b2523;
+  --muted:#6b7a78;
+  --white:#ffffff;
+  --line:#dde4e0;
+  --shadow:0 18px 40px rgba(0,0,0,.08);
+  --radius:16px;
+}
 
-    body {
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: #f4f6f5;
-      color: #1f2f2a;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:"Segoe UI", Roboto, system-ui, sans-serif;
+}
 
-    /* =========================
-   LAYOUT GLOBAL
-========================= */
-    .page {
-      display: flex;
-      min-height: 100vh;
-    }
+body{
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
 
-    /* =========================
-   COLONNE GAUCHE
-========================= */
-    .left {
-      flex: 1;
-      background:
-        linear-gradient(rgba(56, 98, 78, 0.85),
-          rgba(56, 98, 78, 0.85)),
-        url("https://media.istockphoto.com/id/1424145594/fr/photo/panorama-du-plus-beau-coucher-ou-lever-de-soleil-bunker-de-sable-sur-un-terrain-de-golf-sans.jpg?s=612x612&w=0&k=20&c=GAi0v5wBghIH49Y623MbH8KLP5SQY7KNOD4pQPFh2yo=");
-      background-size: cover;
-      background-position: center;
-      padding: 48px;
-      display: flex;
-      flex-direction: column;
-    }
+/* ================= HEADER ================= */
+header{
+  background:#fbfcfb;
+  border-bottom:1px solid var(--line);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
 
-    .left-content {
-      max-width: 520px;
-      margin: auto 0;
-    }
+.header-inner{
+  max-width:1320px;
+  margin:auto;
+  padding:22px 32px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:32px;
+}
 
-    .logo {
-      width: 210px;
-      margin-bottom: 48px;
-    }
+.logo img{
+  height:46px;
+}
 
-    .left h1 {
-      font-size: 42px;
-      line-height: 1.2;
-      margin-bottom: 24px;
-      color: #ffffff;
-    }
+/* DESKTOP NAV */
+nav{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+}
 
-    .left p {
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      color: #e6efe9;
-    }
+.nav-item{
+  position:relative;
+}
 
-    .footer {
-      font-size: 14px;
-      color: #d6e2db;
-      margin-top: auto;
-    }
+nav a,
+nav span{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:600;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    /* =========================
-   COLONNE DROITE
-========================= */
-    .right {
-      flex: 1;
-      background-color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-    }
+nav a:hover,
+nav span:hover{
+  color:var(--green);
+}
 
-    .login-box {
-      width: 100%;
-      max-width: 420px;
-      background: linear-gradient(165deg, #f36a28, #e3541a);
-      border-radius: 28px;
-      padding: 48px 40px;
-      box-shadow:
-        0 40px 80px rgba(0, 0, 0, 0.25),
-        0 0 0 6px rgba(242, 101, 34, 0.15);
-      position: relative;
-    }
+/* DROPDOWN DESKTOP */
+.dropdown{
+  display:none;
+  position:absolute;
+  top:36px;
+  left:0;
+  background:var(--white);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  min-width:260px;
+  padding:12px 0;
+}
 
-    .login-box::before {
-      content: "";
-      position: absolute;
-      inset: -12px;
-      border-radius: 36px;
-      background: rgba(242, 101, 34, 0.12);
-      z-index: -1;
-    }
+.dropdown a{
+  display:block;
+  padding:14px 20px;
+  font-size:14px;
+}
 
-    .login-box h2 {
-      text-align: center;
-      color: #ffffff;
-      margin-bottom: 32px;
-      font-size: 28px;
-    }
+.dropdown a:hover{
+  background:var(--green-soft);
+}
 
-    /* =========================
-   FORMULAIRE
-========================= */
-    .field {
-      background-color: rgba(255, 255, 255, 0.35);
-      border-radius: 50px;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      margin-bottom: 18px;
-    }
+.nav-item:hover .dropdown{
+  display:block;
+}
 
-    .field img {
-      width: 22px;
-      margin-right: 12px;
-      opacity: 0.85;
-    }
+/* USER */
+.user{
+  position:relative;
+  font-size:14px;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+}
 
-    .field input {
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 16px;
-      width: 100%;
-      color: #2a2a2a;
-    }
+.user:hover .dropdown{
+  display:block;
+}
 
-    .field input::placeholder {
-      color: #4f4f4f;
-    }
+/* BURGER */
+.burger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
 
-    /* =========================
-   BOUTON
-========================= */
-    button {
-      width: 100%;
-      margin-top: 12px;
-      padding: 16px;
-      border-radius: 50px;
-      border: none;
-      background-color: #ffffff;
-      font-size: 18px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+.burger span{
+  width:26px;
+  height:3px;
+  background:var(--text);
+  border-radius:2px;
+}
 
-    button:hover {
-      background-color: #f2f2f2;
-    }
+/* ================= MOBILE MENU ================= */
+.mobile-menu{
+  display:none;
+  background:var(--white);
+  border-top:1px solid var(--line);
+}
 
-    .forgot {
-      text-align: center;
-      margin-top: 18px;
-      font-size: 14px;
-    }
+.mobile-menu.active{
+  display:block;
+}
 
-    .forgot a {
-      color: #ffffff;
-      text-decoration: underline;
-    }
+.mobile-menu a,
+.mobile-menu span{
+  display:block;
+  padding:16px 28px;
+  font-weight:600;
+  border-bottom:1px solid var(--line);
+}
 
-    /* =========================
-   RESPONSIVE MOBILE
-========================= */
-    @media (max-width: 900px) {
-      .page {
-        flex-direction: column;
-      }
+.mobile-sub{
+  display:none;
+  background:var(--bg);
+}
 
-      .left,
-      .right {
-        padding: 32px 24px;
-      }
+.mobile-sub a{
+  padding-left:46px;
+  font-weight:500;
+}
 
-      .left-content {
-        order: 1;
-      }
+/* ================= HERO ================= */
+.hero{
+  width:100%;
+  background:linear-gradient(135deg,var(--green-dark),var(--green));
+  color:white;
+}
 
-      .right {
-        order: 2;
-      }
+.hero-inner{
+  max-width:1320px;
+  margin:auto;
+  padding:90px 32px;
+}
 
-      .footer {
-        order: 3;
-        margin-top: 24px;
-      }
+.hero h1{
+  font-size:44px;
+  margin-bottom:18px;
+}
 
-      .left h1 {
-        font-size: 32px;
-      }
-    }
-  </style>
+.hero p{
+  font-size:19px;
+  max-width:860px;
+}
+
+.hero a{
+  display:inline-block;
+  margin-top:36px;
+  padding:18px 46px;
+  background:white;
+  color:var(--green-dark);
+  border-radius:40px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+/* ================= MAIN ================= */
+main{
+  max-width:1320px;
+  margin:auto;
+  padding:0 32px 120px;
+}
+
+.section{
+  margin-top:96px;
+}
+
+.section h2{
+  font-size:30px;
+  margin-bottom:48px;
+}
+
+.news{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:36px;
+}
+
+.news-item{
+  background:white;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.news-head{
+  background:var(--green);
+  color:white;
+  padding:14px 22px;
+  font-size:13px;
+}
+
+.news-body{
+  padding:28px;
+}
+
+.news-body h3{
+  margin-bottom:12px;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:46px;
+  border-top:1px solid var(--line);
+  background:#fbfcfb;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1000px){
+  nav{display:none;}
+  .burger{display:flex;}
+  .news{grid-template-columns:1fr;}
+  .hero-inner{text-align:center;}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="page">
+<header>
+  <div class="header-inner">
+    <div class="logo"><img src="https://image2url.com/r2/default/images/1770043154535-2e6e18bc-5bd4-455e-8ba8-a83d1015d8b7.png"></div>
 
-    <!-- COLONNE GAUCHE -->
-    <div class="left">
-      <div class="left-content">
-        <img src="https://image2url.com/r2/default/images/1770043154535-2e6e18bc-5bd4-455e-8ba8-a83d1015d8b7.png" alt="Logo EGC" class="logo" />
-
-        <h1>Bienvenue sur le site de l'association EGC</h1>
-
-        <p>
-          L’Énergie Golf Club est une association loi 1901 dédiée au développement
-          de la pratique du golf pour les personnels des Industries Électriques et Gazières.
-        </p>
-
-        <p>
-          Cet espace sécurisé est réservé aux membres de l'association.
-        </p>
+    <nav>
+      <div class="nav-item">
+        <span>Qui sommes-nous ? ▾</span>
+        <div class="dropdown">
+          <a>Nos valeurs, notre esprit</a>
+          <a>Règlement</a>
+          <a>Etiquette</a>
+        </div>
       </div>
+      <a>Golfs partenaires</a>
+      <a>Compétitions</a>
+      <a>Voyages</a>
+      <a>Offre Débutant EGC Swing4U</a>
+    </nav>
 
-      <div class="footer">
-        Énergie Golf Club – 9 rue George Bernard Shaw – 75015 Paris<br />
-        contact@egcasso.org
-      </div>
-    </div>
-
-    <!-- COLONNE DROITE -->
-    <div class="right">
-      <div class="login-box">
-
-        <h2>Accéder à mon compte</h2>
-
-        <div class="field">
-          <img src="https://img.icons8.com/ios-filled/50/000000/new-post.png" />
-          <input id="email" type="email" placeholder="Adresse email" />
-        </div>
-
-        <div class="field">
-          <img src="https://img.icons8.com/ios-filled/50/000000/lock-2.png" />
-          <input id="password" type="password" placeholder="Mot de passe" />
-        </div>
-
-        <button onclick="fakeLogin()">Se connecter</button>
-
-        <div class="forgot">
-          <a href="#">Mot de passe oublié ?</a>
-        </div>
-
+    <div class="user">
+      François BOUR ▾
+      <div class="dropdown">
+        <a>Tableau de bord</a>
+        <a>Mes avantages</a>
+        <a>Etendre mon offre EGC</a>
+        <a>Mes coordonnées</a>
+        <a>Mes factures</a>
+        <a>Carte perdue</a>
+        <a>Déconnexion</a>
       </div>
     </div>
 
+    <div class="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 
-  <script>
-    function fakeLogin() {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-      if (email === "demo@egc.fr" && password === "egc2026") {
-        window.location.href = "accueil.html";
-      } else {
-        alert("Identifiants incorrects — compte de démonstration uniquement.");
-      }
-    }
-  </script>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <span onclick="toggleSub()">Qui sommes-nous ? ▾</span>
+    <div class="mobile-sub" id="subMenu">
+      <a>Présentation</a>
+      <a>Notre mission</a>
+      <a>L’équipe</a>
+    </div>
+    <a>Golfs partenaires</a>
+    <a>Compétitions</a>
+    <a>Voyages</a>
+    <a>Offre Débutant EGC Swing4U</a>
+    <a>Mon compte</a>
+    <a>Déconnexion</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Energie Golf Club</h1>
+    <p>Votre espace membre pour accéder simplement à l’ensemble des avantages, compétitions et services proposés par l’association</p>
+    <a>Réserver un départ</a>
+  </div>
+</section>
+
+<main>
+  <section class="section">
+    <h2>À la une</h2>
+    <div class="news">
+      <div class="news-item">
+        <div class="news-head">15 mars 2026</div>
+        <div class="news-body">
+          <h3>Compétitions printemps</h3>
+          <p>Inscriptions ouvertes.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-head">02 mars 2026</div>
+        <div class="news-body">
+          <h3>Nouveaux golfs partenaires</h3>
+          <p>Conditions exclusives.</p>
+        </div>
+      </div>
+      <div class="news-item">
+        <div class="news-head">20 février 2026</div>
+        <div class="news-body">
+          <h3>Voyage Portugal</h3>
+          <p>Séjour premium EGC.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Energie Golf Club – contact@egcasso.org</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+function toggleSub(){
+  document.getElementById('subMenu').classList.toggle('active');
+}
+</script>
 
 </body>
-
 </html>
