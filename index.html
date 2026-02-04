@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EGC – Accès membres</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #f4f6f5;
+      color: #1f2f2a;
+    }
+
+    /* =========================
+   LAYOUT GLOBAL
+========================= */
+    .page {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* =========================
+   COLONNE GAUCHE
+========================= */
+    .left {
+      flex: 1;
+      background:
+        linear-gradient(rgba(56, 98, 78, 0.85),
+          rgba(56, 98, 78, 0.85)),
+        url("https://media.istockphoto.com/id/1424145594/fr/photo/panorama-du-plus-beau-coucher-ou-lever-de-soleil-bunker-de-sable-sur-un-terrain-de-golf-sans.jpg?s=612x612&w=0&k=20&c=GAi0v5wBghIH49Y623MbH8KLP5SQY7KNOD4pQPFh2yo=");
+      background-size: cover;
+      background-position: center;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .left-content {
+      max-width: 520px;
+      margin: auto 0;
+    }
+
+    .logo {
+      width: 210px;
+      margin-bottom: 48px;
+    }
+
+    .left h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .left p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #e6efe9;
+    }
+
+    .footer {
+      font-size: 14px;
+      color: #d6e2db;
+      margin-top: auto;
+    }
+
+    /* =========================
+   COLONNE DROITE
+========================= */
+    .right {
+      flex: 1;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(165deg, #f36a28, #e3541a);
+      border-radius: 28px;
+      padding: 48px 40px;
+      box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.25),
+        0 0 0 6px rgba(242, 101, 34, 0.15);
+      position: relative;
+    }
+
+    .login-box::before {
+      content: "";
+      position: absolute;
+      inset: -12px;
+      border-radius: 36px;
+      background: rgba(242, 101, 34, 0.12);
+      z-index: -1;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 32px;
+      font-size: 28px;
+    }
+
+    /* =========================
+   FORMULAIRE
+========================= */
+    .field {
+      background-color: rgba(255, 255, 255, 0.35);
+      border-radius: 50px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .field img {
+      width: 22px;
+      margin-right: 12px;
+      opacity: 0.85;
+    }
+
+    .field input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 16px;
+      width: 100%;
+      color: #2a2a2a;
+    }
+
+    .field input::placeholder {
+      color: #4f4f4f;
+    }
+
+    /* =========================
+   BOUTON
+========================= */
+    button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 16px;
+      border-radius: 50px;
+      border: none;
+      background-color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #f2f2f2;
+    }
+
+    .forgot {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .forgot a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* =========================
+   RESPONSIVE MOBILE
+========================= */
+    @media (max-width: 900px) {
+      .page {
+        flex-direction: column;
+      }
+
+      .left,
+      .right {
+        padding: 32px 24px;
+      }
+
+      .left-content {
+        order: 1;
+      }
+
+      .right {
+        order: 2;
+      }
+
+      .footer {
+        order: 3;
+        margin-top: 24px;
+      }
+
+      .left h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- COLONNE GAUCHE -->
+    <div class="left">
+      <div class="left-content">
+        <img src="https://image2url.com/r2/default/images/1770043154535-2e6e18bc-5bd4-455e-8ba8-a83d1015d8b7.png" alt="Logo EGC" class="logo" />
+
+        <h1>Bienvenue sur le site de l'association EGC</h1>
+
+        <p>
+          L’Énergie Golf Club est une association loi 1901 dédiée au développement
+          de la pratique du golf pour les personnels des Industries Électriques et Gazières.
+        </p>
+
+        <p>
+          Cet espace sécurisé est réservé aux membres de l'association.
+        </p>
+      </div>
+
+      <div class="footer">
+        Énergie Golf Club – 9 rue George Bernard Shaw – 75015 Paris<br />
+        contact@egcasso.org
+      </div>
+    </div>
+
+    <!-- COLONNE DROITE -->
+    <div class="right">
+      <div class="login-box">
+
+        <h2>Accéder à mon compte</h2>
+
+        <div class="field">
+          <img src="https://img.icons8.com/ios-filled/50/000000/new-post.png" />
+          <input id="email" type="email" placeholder="Adresse email" />
+        </div>
+
+        <div class="field">
+          <img src="https://img.icons8.com/ios-filled/50/000000/lock-2.png" />
+          <input id="password" type="password" placeholder="Mot de passe" />
+        </div>
+
+        <button onclick="fakeLogin()">Se connecter</button>
+
+        <div class="forgot">
+          <a href="#">Mot de passe oublié ?</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function fakeLogin() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      if (email === "demo@egc.fr" && password === "egc2026") {
+        window.location.href = "accueil.html";
+      } else {
+        alert("Identifiants incorrects — compte de démonstration uniquement.");
+      }
+    }
+  </script>
+
+</body>
+
+</html>
